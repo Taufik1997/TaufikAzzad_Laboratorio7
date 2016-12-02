@@ -13,7 +13,7 @@ Interno::Interno(string nombre,string password, string email, int dias) : Usuari
     
 }
 
-void Interno::setDias(string dias2){
+void Interno::setDias(int dias2){
   dias = dias2;
 }
 

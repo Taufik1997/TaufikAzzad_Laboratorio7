@@ -13,7 +13,7 @@ Manager::Manager(string nombre,string password, string email, int sueldo) : Usua
     
 }
 
-void Manager::setSueldo(string sueldo2){
+void Manager::setSueldo(int sueldo2){
   sueldo = sueldo2;
 }
 

@@ -39,12 +39,12 @@ void Usuario::setPassword(string pass){
   password = pass;
 }
 
-int Usuario::getPassword(){
+string Usuario::getPassword(){
   return password;
 }
 
 string Usuario::toString(){
 	stringstream ss;
-	ss<<"Nombre: "<<nombre<<" Password: "<<numero<<" Correo: "<<email;
+	ss<<"Nombre: "<<nombre<<" Password: "<<password<<" Correo: "<<email;
 	return ss.str();
 }

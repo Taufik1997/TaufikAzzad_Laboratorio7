@@ -16,26 +16,35 @@ int main(){
 	vector<Interno*> internos;
 	vector<Manager*> managers;
 
-	/*
+	
 	string line;
-	ifstream myfile ("Usuarios.txt");
+	ifstream myfile ("Supervisores.txt");
 	if (myfile.is_open())
 	{
 		while (getline(myfile,line))
 		{
-			supervisores.push_back(new Supervisor())
+			string s = line;
+			string delimiter = " ";
+
+			size_t pos = 0;
+			std::string token;
+			while ((pos = s.find(delimiter)) != std::string::npos) {
+				int s = s.substr(3,pos)[1] - 48;
+			    supervisores.push_back(new Supervisor(s.substr(0,pos),s.substr(1,pos),s.substr(2,pos),s));
+			}
 		}
 		myfile.close();
 	}
 
 	else cout << "Unable to open file"; 
-	*/
+	
 
 
 
 	new Administrador("Admin", "123","Admin@gmail.com", "01/12/16");
 	int option = 0;
 	do{
+		option = 0;
 		cout<<"     Bienvenido\n1)Log in\n2)Salir\n";
 		cin>>option;
 		if(option == 1){
@@ -49,6 +58,7 @@ int main(){
 			bool admin = false, super = false, intern = false, manager = false;
 
 			if(usuario == "Admin" && pass == "123"){
+				usuarioValidado = admin;
 				admin = true;
 			}	
 			for (int i = 0; i < internos.size(); ++i)
@@ -63,6 +73,7 @@ int main(){
 				if(supervisores.at(i)->getNombre() == usuario && supervisores.at(i)->getPassword() == pass){
 					usuarioValidado = true;
 					super = true;
+					supervisores.at(i)->setIngresos(supervisores.at(i)->getIngresos() + 1);
 				}
 			}
 			for (int i = 0; i < managers.size(); ++i)
@@ -85,7 +96,7 @@ int main(){
 						cout<<"    Internos \n1)Crear\n2)Eliminar\n3)Listar\n4)Salir\n";
 						cin>>opt;
 						if(opt == 1){
-							if(admin || super){
+							if(admin || manager){
 								string nombre, password, mail;
 								int dias;
 								cout<<"Ingrese el nombre:";
@@ -97,18 +108,26 @@ int main(){
 								cout<<"Ingrese los dias trabajados:";
 								cin>>dias;
 								internos.push_back(new Interno(nombre, password, mail, dias));
+							}else{
+								cout<<"Nesesita ser o administrador o manager para ingresar a esta opcion";
 							}
 						}
 						if(opt == 2){
-							if(admin || super){
-
+							if(admin || manager){
+								int num;
+								cout<<"Ingrese la posicion de el interno que desea borrar:";
+								cin>>num;
+								internos.erase(internos.begin()+num);
+							}else{
+								cout<<"Nesesita ser o administrador o manager para ingresar a esta opcion";
 							}
 						}
 						if(opt == 3){
-
+							for (int i = 0; i <internos.size(); ++i)
+								{
+									cout<< i<<"-"<<internos.at(i)->toString()<<endl;
+								}
 						}
-
-
 						break;				
 					}
 					case 2:{
@@ -116,17 +135,41 @@ int main(){
 						cout<<"    Managers \n1)Crear\n2)Eliminar\n3)Listar\n4)Salir\n";
 						cin>>opt;
 						if(opt == 1){
-							if(admin || super){
-
+						if(admin){
+								string nombre, password, mail;
+								int sueldo;
+								cout<<"Ingrese el nombre:";
+								cin>>nombre;
+								cout<<"Ingrese la contraseña:";
+								cin>>password;
+								cout<<"Ingrese el corre:";
+								cin>>mail;
+								cout<<"Ingrese el sueldo:";
+								cin>>sueldo;
+								managers.push_back(new Manager(nombre, password, mail, sueldo));
+							}else{
+								cout<<"Nesesita ser o administrador o manager para ingresar a esta opcion";
 							}
 						}
 						if(opt == 2){
-							if(admin || super){
-
+							if(admin || manager){
+								int num;
+								cout<<"Ingrese la posicion de el managers que desea borrar:";
+								cin>>num;
+								managers.erase(managers.begin()+num);
+							}else{
+								cout<<"Nesesita ser o administrador o manager para ingresar a esta opcion";
 							}
 						}
 						if(opt == 3){
-
+							if(intern){
+								cout<<"Un interno no puedo ingresar a esta opcion";
+							}else{
+								for (int i = 0; i < managers.size(); ++i)
+								{
+									cout<< i<<"-"<<managers.at(i)->toString()<<endl;
+								}
+							}
 						}
 
 
@@ -137,17 +180,39 @@ int main(){
 						cout<<"    Supervisores \n1)Crear\n2)Eliminar\n3)Listar\n4)Salir\n";
 						cin>>opt;
 						if(opt == 1){
-							if(admin || super){
-
+							if(admin || manager){
+								string nombre, password, mail;
+								int dias;
+								cout<<"Ingrese el nombre:";
+								cin>>nombre;
+								cout<<"Ingrese la contraseña:";
+								cin>>password;
+								cout<<"Ingrese el corre:";
+								cin>>mail;
+								supervisores.push_back(new Supervisor(nombre, password, mail, 0));
+							}else{
+								cout<<"Nesesita ser o administrador o manager para ingresar a esta opcion";
 							}
 						}
 						if(opt == 2){
-							if(admin || super){
-
+							if(admin || manager){
+								int num;
+								cout<<"Ingrese la posicion de el supervisor que desea borrar:";
+								cin>>num;
+								supervisores.erase(supervisores.begin()+num);
+							}else{
+								cout<<"Nesesita ser o administrador o manager para ingresar a esta opcion";
 							}
 						}
 						if(opt == 3){
-
+							if(intern){
+								cout<<"Un interno no puedo ingresar a esta opcion";
+							}else{
+								for (int i = 0; i < supervisores.size(); ++i)
+								{
+									cout<< i<<"-"<<supervisores.at(i)->toString()<<endl;
+								}
+							}
 						}
 
 						break;
@@ -157,8 +222,14 @@ int main(){
 			}
 
 		}//if de Administracion
-	}while(option != 1);//Fin main do while
-	
+	}while(option == 1);//Fin main do while
+	ofstream file;
+	file.open("Supervisores.txt");
+	for (int i = 0; i < supervisores.size(); ++i)
+		{
+			cout<< i<<"-"<<supervisores.at(i)->toString()<<endl;
+		}
+	file.close();
 	return 0;
 }
 
