@@ -33,7 +33,7 @@ int main(){
 
 
 
-	usuarios.push_back(new Administrador("Admin", "123","Admin@gmail.com", "01/12/16"));
+	new Administrador("Admin", "123","Admin@gmail.com", "01/12/16");
 	int option = 0;
 	do{
 		cout<<"     Bienvenido\n1)Log in\n2)Salir\n";
@@ -80,13 +80,23 @@ int main(){
 				cin>>opcion;
 				switch(opcion){
 					case 1:{
-						
+
 						int opt;
 						cout<<"    Internos \n1)Crear\n2)Eliminar\n3)Listar\n4)Salir\n";
 						cin>>opt;
 						if(opt == 1){
 							if(admin || super){
-
+								string nombre, password, mail;
+								int dias;
+								cout<<"Ingrese el nombre:";
+								cin>>nombre;
+								cout<<"Ingrese la contraseña:";
+								cin>>password;
+								cout<<"Ingrese el corre:";
+								cin>>mail;
+								cout<<"Ingrese los dias trabajados:";
+								cin>>dias;
+								internos.push_back(new Interno(nombre, password, mail, dias));
 							}
 						}
 						if(opt == 2){

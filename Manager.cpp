@@ -9,7 +9,7 @@ Manager::Manager() : Usuario(){
     
 }
 
-Manager::Manager(string nombre,string email, string password, int sueldo) : Usuario(nombre,email,password),sueldo(sueldo){
+Manager::Manager(string nombre,string password, string email, int sueldo) : Usuario(nombre,email,password),sueldo(sueldo){
     
 }
 

@@ -9,7 +9,7 @@ Supervisor::Supervisor() : Usuario(){
     
 }
 
-Supervisor::Supervisor(string nombre,string email, string password, int ingresos) : Usuario(nombre,email,password),ingresos(ingresos){
+Supervisor::Supervisor(string nombre,string password, string email, int ingresos) : Usuario(nombre,email,password),ingresos(ingresos){
     
 }
 

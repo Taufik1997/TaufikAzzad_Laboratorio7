@@ -9,7 +9,7 @@ Interno::Interno() : Usuario(){
     
 }
 
-Interno::Interno(string nombre,string email, string password, int dias) : Usuario(nombre,email,password),dias(dias){
+Interno::Interno(string nombre,string password, string email, int dias) : Usuario(nombre,email,password),dias(dias){
     
 }
 

@@ -9,7 +9,7 @@ Administrador::Administrador() : Usuario(){
     
 }
 
-Administrador::Administrador(string nombre,string email, string password, string fecha) : Usuario(nombre,email,password),fecha(fecha){
+Administrador::Administrador(string nombre,string password, string email, string fecha) : Usuario(nombre,email,password),fecha(fecha){
     
 }
 
