@@ -80,26 +80,43 @@ int main(){
 				cin>>opcion;
 				switch(opcion){
 					case 1:{
+						
 						int opt;
-						cout<<"    Internos \n1)Crear\n2)Eliminar\n3)Salir\n";
+						cout<<"    Internos \n1)Crear\n2)Eliminar\n3)Listar\n4)Salir\n";
 						cin>>opt;
 						if(opt == 1){
+							if(admin || super){
 
+							}
 						}
 						if(opt == 2){
+							if(admin || super){
+
+							}
+						}
+						if(opt == 3){
 
 						}
+
+
 						break;				
 					}
 					case 2:{
 						int opt;
-						cout<<"    Managers \n1)Crear\n2)Eliminar\n3)Salir\n";
+						cout<<"    Managers \n1)Crear\n2)Eliminar\n3)Listar\n4)Salir\n";
 						cin>>opt;
 						if(opt == 1){
+							if(admin || super){
 
+							}
 						}
 						if(opt == 2){
-							
+							if(admin || super){
+
+							}
+						}
+						if(opt == 3){
+
 						}
 
 
@@ -107,13 +124,20 @@ int main(){
 					}
 					case 3:{
 						int opt;
-						cout<<"    Supervisores \n1)Crear\n2)Eliminar\n3)Salir\n";
+						cout<<"    Supervisores \n1)Crear\n2)Eliminar\n3)Listar\n4)Salir\n";
 						cin>>opt;
 						if(opt == 1){
+							if(admin || super){
 
+							}
 						}
 						if(opt == 2){
-							
+							if(admin || super){
+
+							}
+						}
+						if(opt == 3){
+
 						}
 
 						break;
