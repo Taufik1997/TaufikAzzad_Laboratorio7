@@ -13,7 +13,7 @@ Supervisor::Supervisor(string nombre,string password, string email, int ingresos
     
 }
 
-void Supervisor::setIngresos(string ingresos2){
+void Supervisor::setIngresos(int ingresos2){
   ingresos = ingresos2;
 }
 
