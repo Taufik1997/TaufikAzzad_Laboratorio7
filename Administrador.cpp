@@ -5,7 +5,7 @@
 using std::stringstream;
 using std::string;
 
-Administrador::Administrador() : Contacto(){
+Administrador::Administrador() : Usuario(){
     
 }
 
@@ -17,7 +17,7 @@ void Administrador::setFecha(string fecha2){
   fecha = fecha2;
 }
 
-string fecha::getFecha(){
+string Administrador::getFecha(){
   return fecha;
 }
 
