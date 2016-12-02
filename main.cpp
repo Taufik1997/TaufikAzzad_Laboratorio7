@@ -11,28 +11,120 @@
 using namespace std;
 
 int main(){
-	vector<Usuario*> usuarios;
-	contactos.push_back(new Administrador("Admin", "123","Admin@gmail.com", "01/12/16"));
-	
-	int opcion = 0;
+
+	vector<Supervisor*> supervisores;
+	vector<Interno*> internos;
+	vector<Manager*> managers;
+
+	/*
+	string line;
+	ifstream myfile ("Usuarios.txt");
+	if (myfile.is_open())
+	{
+		while (getline(myfile,line))
+		{
+			supervisores.push_back(new Supervisor())
+		}
+		myfile.close();
+	}
+
+	else cout << "Unable to open file"; 
+	*/
+
+
+
+	usuarios.push_back(new Administrador("Admin", "123","Admin@gmail.com", "01/12/16"));
+	int option = 0;
 	do{
-		cout<<"     Administracion\n1)Agrergar\n2)Eliminar\n3)Listar con Categoria\n4)Salir\n";
-		cin>>opcion;
-		switch(opcion){
-			case 1:{
+		cout<<"     Bienvenido\n1)Log in\n2)Salir\n";
+		cin>>option;
+		if(option == 1){
+			bool usuarioValidado = false;
+			string usuario, pass;
+			cout<<"Ingrese su nombre de usuario:";
+			cin>>usuario;
+			cout<<"Contraseña:";
+			cin>>pass;
+			int opcion = 0;
+			bool admin = false, super = false, intern = false, manager = false;
 
-				break;				
+			if(usuario == "Admin" && pass == "123"){
+				admin = true;
+			}	
+			for (int i = 0; i < internos.size(); ++i)
+			{
+				if(internos.at(i)->getNombre() == usuario && internos.at(i)->getPassword() == pass){
+					usuarioValidado = true;
+					intern = true;
+				}
 			}
-			case 2:{
-				
-				break;
+			for (int i = 0; i < supervisores.size(); ++i)
+			{
+				if(supervisores.at(i)->getNombre() == usuario && supervisores.at(i)->getPassword() == pass){
+					usuarioValidado = true;
+					super = true;
+				}
 			}
-			case 3:{
-				
+			for (int i = 0; i < managers.size(); ++i)
+			{
+				if(managers.at(i)->getNombre() == usuario && managers.at(i)->getPassword() == pass){
+					usuarioValidado = true;
+					manager = true;
+				}
+			}
 
-				break;
+
+			if(usuarioValidado){
+				do{ 
+				cout<<"     Administracion\n1)Internos\n2)Managers\n3)Supervisores\n4)Salir\n";
+				cin>>opcion;
+				switch(opcion){
+					case 1:{
+						int opt;
+						cout<<"    Internos \n1)Crear\n2)Eliminar\n3)Salir\n";
+						cin>>opt;
+						if(opt == 1){
+
+						}
+						if(opt == 2){
+
+						}
+						break;				
+					}
+					case 2:{
+						int opt;
+						cout<<"    Managers \n1)Crear\n2)Eliminar\n3)Salir\n";
+						cin>>opt;
+						if(opt == 1){
+
+						}
+						if(opt == 2){
+							
+						}
+
+
+						break;
+					}
+					case 3:{
+						int opt;
+						cout<<"    Supervisores \n1)Crear\n2)Eliminar\n3)Salir\n";
+						cin>>opt;
+						if(opt == 1){
+
+						}
+						if(opt == 2){
+							
+						}
+
+						break;
+					}
+				}//Fin Switch 
+				}while(opcion>=0 && opcion <=3);//Fin do while
 			}
-		}//Fin Switch 
-	}while(opcion>=0 && opcion <=3);//Fin do while
+
+		}//if de Administracion
+	}while(option != 1);//Fin main do while
+	
 	return 0;
 }
+
