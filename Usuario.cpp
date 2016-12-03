@@ -45,6 +45,6 @@ string Usuario::getPassword(){
 
 string Usuario::toString(){
 	stringstream ss;
-	ss<<"Nombre: "<<nombre<<" Password: "<<password<<" Correo: "<<email;
+	ss<<nombre<<" "<<password<<" "<<email<<" ";
 	return ss.str();
 }

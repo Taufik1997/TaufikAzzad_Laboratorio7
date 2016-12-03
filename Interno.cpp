@@ -23,6 +23,6 @@ int Interno::getDias(){
 
 string Interno::toString(){
 	stringstream ss;
-	ss<<dias;
+	ss<<nombre<<" "<<password<<" "<<email<<" "<<dias;
 	return ss.str();
 }

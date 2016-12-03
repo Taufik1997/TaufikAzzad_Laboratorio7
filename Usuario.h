@@ -6,10 +6,11 @@ using std::string;
 
 class Usuario{
 private:
+	
+public:
 	string nombre;
 	string password;
 	string email;
-public:
 	Usuario(string,string,string);
 	Usuario();
 	virtual ~Usuario();

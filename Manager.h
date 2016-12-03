@@ -7,12 +7,12 @@ using std::string;
 
 class Manager : public Usuario {
     private:
-    	int sueldo;
+    	string sueldo;
     public:
         Manager();
-        Manager(string,string,string,int);
-        void setSueldo(int);
-		int getSueldo();
+        Manager(string,string,string,string);
+        void setSueldo(string);
+		string getSueldo();
 		string toString();
 };
 

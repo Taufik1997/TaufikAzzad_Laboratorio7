@@ -7,6 +7,7 @@
 #include "Interno.h"
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -16,27 +17,36 @@ int main(){
 	vector<Interno*> internos;
 	vector<Manager*> managers;
 
-	
-	string line;
-	ifstream myfile ("Supervisores.txt");
-	if (myfile.is_open())
-	{
-		while (getline(myfile,line))
-		{
-			string s = line;
-			string delimiter = " ";
+	string name,passw, email, other;
+	ifstream man;
+	man.open("Managers.txt");
+	while(!man.eof()){
+		getline(man,name,' ');
+		getline(man,passw,' ');
+		getline(man,email,' ');
+		getline(man,other,' ');
+		managers.push_back(new Manager(name,passw,email,other));
+	} 
 
-			size_t pos = 0;
-			std::string token;
-			while ((pos = s.find(delimiter)) != std::string::npos) {
-				int s = s.substr(3,pos)[1] - 48;
-			    supervisores.push_back(new Supervisor(s.substr(0,pos),s.substr(1,pos),s.substr(2,pos),s));
-			}
-		}
-		myfile.close();
-	}
+	ifstream super;
+	super.open("Supervisores.txt");
+	while(!super.eof()){
+		getline(super,name,' ');
+		getline(super,passw,' ');
+		getline(super,email,' ');
+		getline(super,other,' ');
+		supervisores.push_back(new Supervisor(name,passw,email,atoi(other.c_str())));
+	} 
 
-	else cout << "Unable to open file"; 
+	ifstream inter;
+	inter.open("Internos.txt");
+	while(!inter.eof()){
+		getline(inter,name,' ');
+		getline(inter,passw,' ');
+		getline(inter,email,' ');
+		getline(inter,other,' ');
+		internos.push_back(new Interno(name,passw,email,atoi(other.c_str())));
+	} 
 	
 
 
@@ -58,7 +68,7 @@ int main(){
 			bool admin = false, super = false, intern = false, manager = false;
 
 			if(usuario == "Admin" && pass == "123"){
-				usuarioValidado = admin;
+				usuarioValidado = true;
 				admin = true;
 			}	
 			for (int i = 0; i < internos.size(); ++i)
@@ -101,8 +111,16 @@ int main(){
 								int dias;
 								cout<<"Ingrese el nombre:";
 								cin>>nombre;
-								cout<<"Ingrese la contraseña:";
-								cin>>password;
+								bool valid = false;
+								do{
+									cout<<"Ingrese la contraseña:";
+									cin>>password;
+									if(password.size() > 8){
+										valid = true;
+									}else{
+										cout<<"La contraseña tiene que tener mas dew 8 caracteres."<<endl;
+									}
+								}while(!valid);
 								cout<<"Ingrese el corre:";
 								cin>>mail;
 								cout<<"Ingrese los dias trabajados:";
@@ -137,11 +155,19 @@ int main(){
 						if(opt == 1){
 						if(admin){
 								string nombre, password, mail;
-								int sueldo;
+								string sueldo;
 								cout<<"Ingrese el nombre:";
 								cin>>nombre;
-								cout<<"Ingrese la contraseña:";
-								cin>>password;
+								bool valid = false;
+								do{
+									cout<<"Ingrese la contraseña:";
+									cin>>password;
+									if(password.size() > 16){
+										valid = true;
+									}else{
+										cout<<"La contraseña tiene que tener mas dew 16 caracteres."<<endl;
+									}
+								}while(!valid);
 								cout<<"Ingrese el corre:";
 								cin>>mail;
 								cout<<"Ingrese el sueldo:";
@@ -185,8 +211,16 @@ int main(){
 								int dias;
 								cout<<"Ingrese el nombre:";
 								cin>>nombre;
-								cout<<"Ingrese la contraseña:";
-								cin>>password;
+								bool valid = false;
+								do{
+									cout<<"Ingrese la contraseña:";
+									cin>>password;
+									if(password.size() > 8){
+										valid = true;
+									}else{
+										cout<<"La contraseña tiene que tener mas dew 8 caracteres."<<endl;
+									}
+								}while(!valid);								
 								cout<<"Ingrese el corre:";
 								cin>>mail;
 								supervisores.push_back(new Supervisor(nombre, password, mail, 0));
@@ -227,9 +261,24 @@ int main(){
 	file.open("Supervisores.txt");
 	for (int i = 0; i < supervisores.size(); ++i)
 		{
-			cout<< i<<"-"<<supervisores.at(i)->toString()<<endl;
+			file<<supervisores.at(i)->toString()<<endl;
 		}
 	file.close();
+
+	ofstream file1;
+	file.open("Internos.txt");
+	for (int i = 0; i < internos.size(); ++i)
+		{
+			file1<<internos.at(i)->toString()<<endl;
+		}
+	file1.close();
+
+	ofstream file2;
+	file2.open("Managers.txt");
+	for (int i = 0; i < managers.size(); ++i)
+		{
+			file2<<managers.at(i)->toString()<<endl;
+		}
+	file2.close();
 	return 0;
 }
-

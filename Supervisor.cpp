@@ -23,6 +23,6 @@ int Supervisor::getIngresos(){
 
 string Supervisor::toString(){
 	stringstream ss;
-	ss<<ingresos;
+	ss<<nombre<<" "<<password<<" "<<email<<" "<<ingresos;
 	return ss.str();
 }

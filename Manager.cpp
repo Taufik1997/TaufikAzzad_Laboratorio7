@@ -9,20 +9,20 @@ Manager::Manager() : Usuario(){
     
 }
 
-Manager::Manager(string nombre,string password, string email, int sueldo) : Usuario(nombre,email,password),sueldo(sueldo){
+Manager::Manager(string nombre,string password, string email, string sueldo) : Usuario(nombre,email,password),sueldo(sueldo){
     
 }
 
-void Manager::setSueldo(int sueldo2){
+void Manager::setSueldo(string sueldo2){
   sueldo = sueldo2;
 }
 
-int Manager::getSueldo(){
+string Manager::getSueldo(){
   return sueldo;
 }
 
 string Manager::toString(){
 	stringstream ss;
-	ss<<sueldo;
+	ss<<nombre<<" "<<password<<" "<<email<<" "<<sueldo;
 	return ss.str();
 }
